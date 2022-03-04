@@ -1,0 +1,1 @@
+# go-gqlgen-gin-template
