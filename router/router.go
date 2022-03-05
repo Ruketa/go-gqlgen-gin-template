@@ -2,7 +2,6 @@ package router
 
 import (
 	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-gqlgen-gin-template/graph"
@@ -17,15 +16,7 @@ func Setup(engine *gin.Engine) {
 		MaxAge:       12 * 60 * 60,
 	}))
 
-	engine.GET("/", playgroundHandler())
 	engine.POST("/query", gqlHandler())
-}
-
-func playgroundHandler() gin.HandlerFunc {
-	h := playground.Handler("GraphQL playground", "/")
-	return func(c *gin.Context) {
-		h.ServeHTTP(c.Writer, c.Request)
-	}
 }
 
 func gqlHandler() gin.HandlerFunc {
